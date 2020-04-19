@@ -78,7 +78,9 @@ private titleService: Title
       }
     });
     $(document).on('click', '#links > a', () =>{
+      if (window.innerWidth < 512) {
       $('#links').slideUp('fast');
+      }
   });
    });
   }

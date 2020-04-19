@@ -1,6 +1,7 @@
 <header class="hborder">
   <i class="fas fa-fw fa-3x fa-rotate-90 fa-gamepad"></i>
   <h1>My Games</h1>
+
   <div class="hbd tl"></div>
   <div class="hbd tr"></div>
   <div class="hbd bl"></div>
@@ -10,36 +11,37 @@
 <nav class="hborder">
   <a routerLink="/home"><i class="fas fa-fw fa-home"></i></a>
   <div id="links" class="vborder">
-  <a routerLink="/list"><i class="fas fa-fw fa-th-list"></i> Listar</a>
-  <a routerLink="/new"><i class="fas fa-fw fa-plus-square"></i> Novo</a>
-  <a routerLink="/about"><i class="fas fa-fw fa-info-circle"></i> Sobre</a>
+      <a routerLink="/list"><i class="fas fa-fw fa-th-list"></i> Listar</a>
+      <a routerLink="/new"><i class="fas fa-fw fa-plus-square"></i> Novo</a>
+      <a routerLink="/about"><i class="fas fa-fw fa-info-circle"></i> Sobre</a>
 
-  <div class="vbd tl"></div>
-<div class="vbd tr"></div>
-<div class="vbd bl"></div>
-<div class="vbd br"></div>
+      <div class="vbd tl"></div>
+      <div class="vbd tr"></div>
+      <div class="vbd bl"></div>
+      <div class="vbd br"></div>
+  </div>
+  <a id="menu" (click)="menuToggle()"><i class="fas fa-fw fa-bars"></i></a>
 
-</div>
-<a  id="menu" (click)= "menuToggle()"><i class="fas fa-fw fa-bars"></i></a>
-<div class="hbd tl"></div>
-<div class="hbd tr"></div>
-<div class="hbd bl"></div>
-<div class="hbd br"></div>
+  <div class="hbd tl"></div>
+  <div class="hbd tr"></div>
+  <div class="hbd bl"></div>
+  <div class="hbd br"></div>
 </nav>
 
 <main class="vborder">
   <router-outlet></router-outlet>
+
   <div class="vbd tl"></div>
   <div class="vbd tr"></div>
   <div class="vbd bl"></div>
   <div class="vbd br"></div>
 </main>
 
-
 <footer class="hborder">
-<i class="far fa-fw fa-copyright"></i> 2020 Rafael Cardoso.
-<div class="hbd tl"></div>
-<div class="hbd tr"></div>
-<div class="hbd bl"></div>
-<div class="hbd br"></div>
+  <i class="far fa-fw fa-copyright"></i> Rafael Cardoso.
+
+  <div class="hbd tl"></div>
+  <div class="hbd tr"></div>
+  <div class="hbd bl"></div>
+  <div class="hbd br"></div>
 </footer>

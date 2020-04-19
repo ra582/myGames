@@ -1,4 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreCollection } from '@angular/fire/firestore/public_api';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+
+export interface Game {
+  cover: string;
+  date: string;
+  description: string;
+  media: string;
+  platform: string;
+  title: string;
+}
+
+export interface GameId extends Game{
+id: string;
+
+}
 
 @Component({
   selector: 'app-list',
@@ -7,9 +25,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  private gameCollection: AngularFirestoreCollection<Game>;
 
-  ngOnInit(): void {
+  games: Observable<GameId[]>;
+
+  orderBy: string;
+
+  orderDr: any;
+  constructor(private db: AngularFirestore) {
+   this.orderBy = "title";
+
+   this.orderDr="asc";
   }
 
-}
+  ngOnInit(): void {
+
+    this.getList();
+  }
+
+  getList(){
+
+    this.gameCollection = this.db.collection<Game>('games', ref => ref.orderBy(this.orderBy, this.orderDr));
+
+    this.games = this.gameCollection.snapshotChanges().pipe(
+    map(actions => actions.map(a => {
+   const data = a.payload.doc.data() as Game;
+   const id = a.payload.doc.id;
+
+   return {id, ...data};
+    }))
+    );
+  }
+  changeOrderField(field: string) {
+ if(this.orderBy !== field){
+   this.orderBy = field;
+   this.getList();
+ }
+ return false;
+  }
+
+  changeOrderDir(direction: any) {
+    if(this.orderDr !== direction){
+      this.orderDr = direction;
+      this.getList();
+    }
+    return false;
+     }
+
+  }
+
